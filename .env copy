@@ -1,6 +1,6 @@
 SECRET=supersecret
-DATABASE1=mongodb+srv://admin:15975310@cluster0.84kah.mongodb.net/
-DATABASE2=Cluster0?retryWrites
+DATABASE1=mongodb+srv://test:T3st1122@cluster0-apezn.mongodb.net/
+DATABASE2=TestUser?retryWrites
 DATABASE3=true&w
 DATABASE4=majority
 HOST=127.0.0.1
