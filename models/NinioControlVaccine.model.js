@@ -4,14 +4,9 @@ var mongoosePaginate = require('mongoose-paginate')
 
 var NinioControlVaccineSchema = new mongoose.Schema({
     ninioId: String,
-    date: Date,
-    place: String,
-    weight: Number, // [kg]
-    height: Number, // [cm]
-    diameter: Number, // Head in [cm]
-    notes: String,
     vaccineId: String,
-    recipeId: String
+    date: Date,
+    notes: String
 })
 
 NinioControlVaccineSchema.plugin(mongoosePaginate)

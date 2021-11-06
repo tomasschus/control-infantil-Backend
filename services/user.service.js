@@ -97,29 +97,3 @@ exports.deleteUser = async function (id) {
         throw Error("Error Occured while Deleting the User")
     }
 }
-
-
-exports.loginUser = async function (user) {
-
-    // Creating a new Mongoose Object by using the new keyword
-    try {
-        // Find the User 
-        console.log("login:",user)
-        var _details = await User.findOne({
-            email: user.email
-        });
-        var passwordIsValid = bcrypt.compareSync(user.password, _details.password);
-        if (!passwordIsValid) throw Error("Invalid username/password")
-
-        var token = jwt.sign({
-            id: _details._id
-        }, process.env.SECRET, {
-            expiresIn: 86400 // expires in 24 hours
-        });
-        return {token:token, user:_details};
-    } catch (e) {
-        // return a Error message describing the reason     
-        throw Error("Error while Login User")
-    }
-
-}

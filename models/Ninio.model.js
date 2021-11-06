@@ -3,6 +3,7 @@ var mongoosePaginate = require('mongoose-paginate')
 
 
 var NinioSchema = new mongoose.Schema({
+    emailUser: String,
     ninioId: String,
     imageName: String,
     name: String,

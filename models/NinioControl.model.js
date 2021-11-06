@@ -1,7 +1,6 @@
 var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 
-
 var NinioControlSchema = new mongoose.Schema({
     ninioId: String,
     date: Date,
@@ -9,9 +8,7 @@ var NinioControlSchema = new mongoose.Schema({
     weight: Number, // [kg]
     height: Number, // [cm]
     diameter: Number, // Head in [cm]
-    notes: String,
-    vaccineId: [String],
-    recipeId: String
+    notes: String
 })
 
 NinioControlSchema.plugin(mongoosePaginate)
