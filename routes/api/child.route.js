@@ -7,8 +7,8 @@ var ControlController = require('../../controllers/control.controller');
 var UploadController = require('../../controllers/upload.controller');
 var Authorization = require('../../auth/authorization');
 //TODO
-var PercentilController = require('../../controllers/percentil.controller');
-var RecipeController = require('../../controllers/recipe.controller');
+/*var PercentilController = require('../../controllers/percentil.controller');
+var RecipeController = require('../../controllers/recipe.controller');*/
 
 // Authorize each API with middleware and map to the Controller Functions
 router.get('/test', function(req, res, next) {
@@ -25,7 +25,7 @@ router.post('/saveImgChild', ChildController.saveImageChild)
 router.post('/uploadImg', UploadController.uploadFilesImgUser);
 router.post('/imgChildById', Authorization,ChildController.getImagenUserById)
 //Vaccines
-router.get('/vaccines', Authorization, VaccineController.getVaccinesnByChild)
+router.get('/vaccines', Authorization, VaccineController.getVaccinesByChild)
 router.post('/vaccine/create', Authorization, VaccineController.createVaccine)
 router.put('/vaccine', Authorization, VaccineController.updateVaccine)
 router.delete('/vaccine/:id', Authorization, VaccineController.removeVaccine)
@@ -37,12 +37,12 @@ router.delete('/control/:id', Authorization, ControlController.removeControl)
 
 //TODO
 //Percentils
-router.get('/percentils', Authorization, PercentilController.getPercentilsByChild)
+/*router.get('/percentils', Authorization, PercentilController.getPercentilsByChild)
 router.post('/percentil/create', Authorization, PercentilController.createPercentil)
 //Recipes
 router.get('/recipes', Authorization, PercentilController.getRecipesByChild)
 router.post('/recipe/create', Authorization, PercentilController.createRecipe)
-router.delete('/recipe/:id', Authorization, PercentilController.removeRecipe)
+router.delete('/recipe/:id', Authorization, PercentilController.removeRecipe)*/
 
 // Export the Router
 module.exports = router;

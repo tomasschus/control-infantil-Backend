@@ -6,7 +6,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bluebird = require('bluebird');
-var fs = require('fs');
 
 //incorporo cors
 var cors = require('cors');
@@ -18,6 +17,13 @@ var utilRouter = require('./routes/utils');
 
 //instancio el servidor
 var app = express();
+
+//swagger
+var swaggerUi = require('swagger-ui-express');
+var fs = require('fs');
+var jsyaml = require('js-yaml');
+var spec = fs.readFileSync('swagger.yml', 'utf8');
+var swaggerDoc = jsyaml.load(spec);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,6 +38,9 @@ app.use(express.urlencoded({
 app.use(cors());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//swagger path
+app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 //Indico las rutas de los endpoint
 app.use('/api', apiRouter);
