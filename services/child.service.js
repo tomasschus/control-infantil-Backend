@@ -27,7 +27,7 @@ exports.createChild = async function (entity) {
     var newChild = new User({
         emailUser: entity.email,
         name: entity.child.name,
-        username: entity.child.username,
+        surname: entity.child.surname,
         imageName: entity.child.img,
         gender: entity.child.gender,
         birthday: entity.child.birthday,

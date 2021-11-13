@@ -35,8 +35,8 @@ exports.createChild = async function (req, res, next) {
     console.log("llegue al controller",req.body)
     var Child = {
         name: req.body.name,
-        username: req.body.username,
-        imageName: req.body.imageName,
+        surname: req.body.surname,
+        img: req.body.imageName,
         gender: req.body.gender,
         birthday: req.body.birthday,
         bloodType: req.body.bloodType,
@@ -48,7 +48,7 @@ exports.createChild = async function (req, res, next) {
     }
     try {
         var createdChild = await ChildrenService.createChild(Entity)
-        return res.status(201).json({createdChild, message: "Succesfully Created Child"})
+        return res.status(200).json({createdChild, message: "Succesfully Created Child"})
     } catch (e) {
         console.log(e)
         return res.status(400).json({status: 400, message: "User Creation was Unsuccesfull"})
@@ -58,7 +58,7 @@ exports.createChild = async function (req, res, next) {
 exports.updateChild = async function (req, res, next) {
     // Id is necessary for the update
     if (!req.body.id) {
-        return res.status(400).json({status: 400., message: "Name be present"})
+        return res.status(404).json({status: 404, message: "Name be present"})
     }
     var Entity = {
         id: req.body.id ? req.body.id : null,
@@ -74,7 +74,7 @@ exports.updateChild = async function (req, res, next) {
         var updatedChild = await ChildrenService.updateChild(Entity)
         return res.status(200).json({status: 200, data: updatedChild, message: "Succesfully Updated Child"})
     } catch (e) {
-        return res.status(400).json({status: 400., message: e.message})
+        return res.status(400).json({status: 400, message: e.message})
     }
 }
 
@@ -93,7 +93,7 @@ exports.saveImageChild = async function (req, res, next) {
     console.log("ImgUser",req.body)
     // Id is necessary for the update
     if (!req.body.id) {
-        return res.status(400).json({status: 400., message: "Id must be present"})
+        return res.status(400).json({status: 400, message: "Id must be present"})
     }
     let childImg = {
         id: req.body.id,
@@ -107,7 +107,7 @@ exports.saveImageChild = async function (req, res, next) {
         
     } catch (e) {
         console.log("error guardar imagen",e)
-        return res.status(400).json({status: 400., message: e.message})
+        return res.status(400).json({status: 400, message: e.message})
     }
 }
 //TODO

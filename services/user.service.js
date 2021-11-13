@@ -55,6 +55,8 @@ exports.createUser = async function (user) {
     }
 }
 
+//exports.loginUser
+
 exports.updateUser = async function (user) {
     
     var id = {name :user.name}
