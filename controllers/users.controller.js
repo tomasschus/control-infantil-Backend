@@ -45,8 +45,14 @@ exports.createUser = async function (req, res, next) {
     }
     try {
         // Calling the Service function with the new object from the Request Body
-        var createdUser = await UserService.createUser(User)
-        return res.status(201).json({createdUser, message: "Succesfully Created User"})
+        var searchUser = await UserService.getUserByEmail(User.email)
+        if( searchUser == null){
+            var createdUser = await UserService.createUser(User)
+            return res.status(201).json({createdUser, message: "Succesfully Created User"})
+        }
+        else{
+            return res.status(500).json({error:true,message: "User Already Registered"})
+        }
     } catch (e) {
         //Return an Error Response Message with Code and the Error Message.
         console.log(e)

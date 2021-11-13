@@ -28,6 +28,23 @@ exports.getUsers = async function (query, page, limit) {
     }
 }
 
+exports.getUserByEmail = async function (mail) {
+
+    // Try Catch the awaited promise to handle the error 
+    try {
+        var UserToFind = await User.findOne({email: mail})
+        console.log(UserToFind)
+        // Return the Userd list that was retured by the mongoose promise
+        return UserToFind;
+
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log("error services",e)
+        throw Error('Error while Paginating Users');
+    }
+}
+
+
 exports.createUser = async function (user) {
     // Creating a new Mongoose Object by using the new keyword
     var hashedPassword = bcrypt.hashSync(user.password, 8);
