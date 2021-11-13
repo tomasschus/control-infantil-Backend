@@ -4,7 +4,7 @@ var mongoosePaginate = require('mongoose-paginate')
 
 var ChildSchema = new mongoose.Schema({
     emailUser: String,
-    id: String,
+    _id: String,
     imageName: String,
     name: String,
     surname: String,

@@ -1,30 +1,38 @@
 // Gettign the Newly created Mongoose Model we just created 
-var NinioControl = require('../models/ChildControl.model');
+var ChildControl = require('../models/ChildControl.model');
 var jwt = require('jsonwebtoken');
 
 // Saving the context of this module inside the _the variable
 _this = this
 
-// Async function to get the User List
-exports.getControls = async function (query, page, limit) {
+exports.getAllControls = async function (query, page, limit) {
+    // Options setup for the mongoose paginate
     var options = {
         page,
         limit
     }
     try {
-        console.log("Query",query)
-        var Controls = await NinioControl.paginate(query, options)
+        var Controls = await ChildControl.paginate(query, options)
         return Controls;
-
     } catch (e) {
         console.log("error services",e)
         throw Error('Error while Paginating Controls');
     }
 }
 
+// Async function to get the User List
+exports.getControls = async function (id, page, limit) {
+    try {
+        let Control = await ChildControl.find({childId: id})
+        return Control;
+    } catch (e) {
+        throw Error('Error while Fetching Controls');
+    }
+}
+
 exports.createControl = async function (entity) {
-    var newControl = new NinioControl({
-        ninioId: entity.id,
+    var newControl = new ChildControl({
+        childId: entity.childId,
         place: entity.place,
         weight: entity.weight,
         height: entity.height,
@@ -36,14 +44,14 @@ exports.createControl = async function (entity) {
     try {
         var savedControl = await newControl.save();
         var token = jwt.sign({
-            id: savedControl.ninioId
+            id: savedControl._id
         }, process.env.SECRET, {
             expiresIn: 86400 // expires in 24 hours
         });
         return token;
     } catch (e) {
         console.log(e)    
-        throw Error("Error while Creating NewControl")
+        throw Error("Error while Creating Control")
     }
 }
 
@@ -51,9 +59,9 @@ exports.updateControl = async function (entity) {
     var id = {ninioId: entity.id}
     try {
         //Find the old User Object by the Id
-        var old = await NinioControl.findOne(id);
+        var old = await ChildControl.findOne(id);
     } catch (e) {
-        throw Error("Error occured while Finding the NinioControl")
+        throw Error("Error occured while Finding the ChildControl")
     }
     // If no old Object exists return false
     if (!old) {
@@ -69,20 +77,18 @@ exports.updateControl = async function (entity) {
         var savedChild = await old.save()
         return savedChild;
     } catch (e) {
-        throw Error("And Error occured while updating the NinioControl");
+        throw Error("And Error occured while updating the ChildControl");
     }
 }
 
 exports.removeControl = async function (id) {
     try {
-        var deleted = await NinioControl.remove({
-            ninioId: id
-        })
+        var deleted = await ChildControl.remove({_id: id})
         if (deleted.n === 0 && deleted.ok === 1) {
-            throw Error("NinioControl could not be deleted")
+            throw Error("Control could not be deleted")
         }
         return deleted;
     } catch (e) {
-        throw Error("Error Occured while Deleting the NinioControl")
+        throw Error("Error Occured while Deleting the Control")
     }
 }

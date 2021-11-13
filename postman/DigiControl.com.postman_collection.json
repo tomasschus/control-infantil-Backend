@@ -1,0 +1,612 @@
+{
+	"info": {
+		"_postman_id": "152ac2a0-128a-44e9-be79-0d4573c34d91",
+		"name": "DigiControl.com",
+		"description": "BackEnd for DigiControl MVP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Swagger - /api-docs/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/api-docs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api-docs",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - /api/users/test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/users/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"test"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - /api/users",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Andrea\",\r\n    \"surname\": \"Rojas\",\r\n    \"email\": \"andrrojas@uade.edu.ar\",\r\n    \"password\": \"UADE\",\r\n    \"telephone\": \"1155995599\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - /api/users",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - /api/users",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Andrea\",\r\n    \"surname\": \"Rojas\",\r\n    \"email\": \"andrrojas@uade.edu.ar\",\r\n    \"password\": \"UADE\",\r\n    \"telephone\": \"1155995599\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - /api/users",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGYyN2M3MWU4OTM3MDlmY2Y2YTYyYiIsImlhdCI6MTYzNjc3MTc4MywiZXhwIjoxNjM2ODU4MTgzfQ.vEAUaNmXkhXLAHQo_8AgGMQ4iJCg5iPntgi7InoUEX8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/users/618f2e799057660fe870d2e7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"618f2e799057660fe870d2e7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - /api/users/login",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andrrojas@uade.edu.ar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - /api/users/logout",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andrrojas@uade.edu.ar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - /api/users/find",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andrrojas@uade.edu.ar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - /api/users/email",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"receiver\": \"andrrojas@uade.edu.ar\",\r\n    \"subject\": \"DigiControl.com - Nueva cuenta\",\r\n    \"username\": \"Andrea\",\r\n    \"email\": \"andrrojas@uade.edu.ar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/email",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - /api/children/test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/children/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"children",
+						"test"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - /api/children",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andrrojas@uade.edu.ar\",\r\n    \"name\": \"Mai\",\r\n    \"surname\": \"Rojas\",\r\n    \"img\": \"/src/profile.jpg\",\r\n    \"gender\": \"M\",\r\n    \"birthday\": \"01/06/2019\",\r\n    \"bloodType\": \"0-\",\r\n    \"notes\": \"This is a note\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"children"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - /api/children",
+			"protocolProfileBehavior": {
+				"followRedirects": false,
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGYzZDg5NDQ5MjZjMTY3MGUzOGU1ZSIsImlhdCI6MTYzNjc3NzM1MywiZXhwIjoxNjM2ODYzNzUzfQ.uzyNq61JQLlfzkpBszwg95dA5Lk2cvGyCCG_r_fVdpQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andrrojas@uade.edu.ar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"children"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - /api/children/find",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGYzZDg5NDQ5MjZjMTY3MGUzOGU1ZSIsImlhdCI6MTYzNjc3NzM1MywiZXhwIjoxNjM2ODYzNzUzfQ.uzyNq61JQLlfzkpBszwg95dA5Lk2cvGyCCG_r_fVdpQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"andrrojas@uade.edu.ar\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/children/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"children",
+						"find"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - /api/children",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"618f403d932ebe275c743fb3\",\r\n    \"name\": \"Joponsio\",\r\n    \"surname\": \"Rojas\",\r\n    \"img\": \"/src/profile.jpg\",\r\n    \"gender\": \"M\",\r\n    \"birthday\": \"21/08/2019\",\r\n    \"bloodType\": \"RH+\",\r\n    \"notes\": \"This is a NEW note\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"children"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - /api/children",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGYyN2M3MWU4OTM3MDlmY2Y2YTYyYiIsImlhdCI6MTYzNjc3MTc4MywiZXhwIjoxNjM2ODU4MTgzfQ.vEAUaNmXkhXLAHQo_8AgGMQ4iJCg5iPntgi7InoUEX8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/children/618f403d932ebe275c743fb3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"children",
+						"618f403d932ebe275c743fb3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

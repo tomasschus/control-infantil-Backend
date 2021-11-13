@@ -2,7 +2,8 @@ var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 
 var ChildControlSchema = new mongoose.Schema({
-    id: String,
+    childId: String,
+    _id: String,
     date: Date,
     place: String,
     weight: Number, // [kg]

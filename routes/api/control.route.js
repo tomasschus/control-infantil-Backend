@@ -10,8 +10,9 @@ router.get('/test', function(req, res, next) {
 });
 
 //Controls
-router.get('/', Authorization, ControlController.getControlsByChild)
+router.get('/', Authorization, ControlController.getControls)
 router.post('/', Authorization, ControlController.createControl)
+router.post('/find', Authorization, ControlController.getControlsById)
 router.put('/', Authorization, ControlController.updateControl)
 router.delete('/:id', Authorization, ControlController.removeControl)
 

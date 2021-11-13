@@ -3,13 +3,30 @@ var ControlService = require('../services/childControl.service');
 // Saving the context of this module inside the _the variable
 _this = this;
 
-exports.getControlsByChild = async function (req, res, next) {
+exports.getControls = async function (req, res, next) {
     // Check the existence of the query parameters, If doesn't exists assign a default value
     var page = req.query.page ? req.query.page : 1
     var limit = req.query.limit ? req.query.limit : 10;
-    let filtro = {ninioId: req.body.id}
     try {
-        var Result = await ControlService.getControls(filtro, page, limit)
+        var Controls = await ControlService.getAllControls({}, page, limit)
+        // Return the Users list with the appropriate HTTP password Code and Message.
+        return res.status(200).json({status: 200, data: Controls, message: "Succesfully Controls Recieved"});
+    } catch (e) {
+        //Return an Error Response Message with Code and the Error Message.
+        return res.status(400).json({status: 400, message: e.message});
+    }
+}
+
+exports.getControlsById = async function (req, res, next) {
+    var id = req.body.id;
+    if (!id) {
+        return res.status(400).json({status: 400, message: "Child id is required"})
+    }
+    try {
+        var Result = await ControlService.getControls(id)
+        if(!Result) {
+            res.status(404).json({status: 404, message: "Child not found"})
+        }
         return res.status(200).json({status: 200, data: Result, message: "Succesfully Control Received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
@@ -20,7 +37,7 @@ exports.createControl = async function (req, res, next) {
     // Req.Body contains the form submit values.
     console.log("llegue al controller",req.body)
     var Entity = {
-        id: req.body.id,
+        childId: req.body.childId,
         place: req.body.place,
         weight: req.body.weight,
         height: req.body.height,
@@ -59,6 +76,9 @@ exports.updateControl = async function (req, res, next) {
 
 exports.removeControl = async function (req, res, next) {
     var id = req.params.id;
+    if (!id) {
+        return res.status(400).json({status: 400, message: "Control id is required"})
+    }
     try {
         var deleted = await ControlService.removeControl(id);
         res.status(200).send("Succesfully Deleted");
