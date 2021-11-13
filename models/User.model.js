@@ -4,6 +4,7 @@ var mongoosePaginate = require('mongoose-paginate')
 
 var UserSchema = new mongoose.Schema({
     id: String,
+    dni:String,
     name: String,
     surname: String,
     email: String,

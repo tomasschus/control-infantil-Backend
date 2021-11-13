@@ -57,6 +57,7 @@ exports.createUser = async function (user) {
         name: user.name,
         surname: user.surname,
         email: user.email,
+        dni:user.dni,
         date: new Date(),
         password: hashedPassword,
         telephone: user.telephone
