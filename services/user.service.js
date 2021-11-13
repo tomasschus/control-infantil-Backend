@@ -81,23 +81,15 @@ exports.createUser = async function (user) {
     }
 }
 
-exports.logUser = async function (user, active) {
+exports.logUser = async function (user) {
     try {
-        //Find the old User Object by the Id
-        var oldUser = await User.findOne({email: user.email})
+        var loginUser = await this.getUserByEmail(user.email)
+        if(loginUser!=null){            
+           return bcrypt.compareSync(user.password, loginUser.password)
+        }
+        return null
     } catch (e) {
-        throw Error("Error occured while logging the User")
-    }
-    // If no old User Object exists return false
-    if (!oldUser) {
-        return false;
-    }
-    oldUser.active = active
-    try {
-        var savedUser = await oldUser.save()
-        return savedUser;
-    } catch (e) {
-        throw Error("And Error occured while logging the User");
+        throw Error("Error Occured while Trying to Login")
     }
 }
 
