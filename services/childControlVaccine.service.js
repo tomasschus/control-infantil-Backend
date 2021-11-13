@@ -1,5 +1,5 @@
 // Gettign the Newly created Mongoose Model we just created 
-var NinioControlVaccine = require('../models/NinioControlVaccine.model');
+var NinioControlVaccine = require('../models/ChildControlVaccine.model');
 var jwt = require('jsonwebtoken');
 
 // Saving the context of this module inside the _the variable

@@ -5,7 +5,8 @@ var router = express.Router()
 //Routers
 var users = require('./api/user.route')
 var children = require('./api/child.route')
-//var controls = require('./api/control.route')
+var controls = require('./api/control.route')
+var vaccines = require('./api/vaccine.route')
 var info = require('./api/info.route')
 //var percentils = require('./api/percentil.route')
 //var calendar = require('./api/calendar.route')
@@ -13,8 +14,9 @@ var info = require('./api/info.route')
 //Mapping
 router.use('/users', users);
 router.use('/children', children);
-//router.use('/controls', controls);
+router.use('/controls', controls);
 router.use('/info', info);
+router.use('/vaccines', vaccines);
 //router.use('/percentils', percentils);
 //router.use('/calendar', calendar);
 

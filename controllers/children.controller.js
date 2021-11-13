@@ -10,7 +10,7 @@ exports.getChildren = async function (req, res, next) {
     var page = req.query.page ? req.query.page : 1
     var limit = req.query.limit ? req.query.limit : 10;
     try {
-        var Children = await ChildrenService.getChildren({}, page, limit)
+        var Children = await ChildrenService.getAllChildren({}, page, limit)
         return res.status(200).json({status: 200, data: Children, message: "Succesfully Children Received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
@@ -23,7 +23,7 @@ exports.getChildrenByEmail = async function (req, res, next) {
     var limit = req.query.limit ? req.query.limit : 10;
     let filtro = {email: req.body.email}
     try {
-        var Children = await ChildrenService.getChildren(filtro, page, limit)
+        var Children = await ChildrenService.getChildren(filtro.email, page, limit)
         return res.status(200).json({status: 200, data: Children, message: "Succesfully Children Received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});
@@ -33,25 +33,24 @@ exports.getChildrenByEmail = async function (req, res, next) {
 exports.createChild = async function (req, res, next) {
     // Req.Body contains the form submit values.
     console.log("llegue al controller",req.body)
-    var Child = {
-        name: req.body.name,
-        surname: req.body.surname,
-        img: req.body.imageName,
-        gender: req.body.gender,
-        birthday: req.body.birthday,
-        bloodType: req.body.bloodType,
-        notes: req.body.notes
-    }
     var Entity = {
         email: req.body.email,
-        child: Child
+        child: {
+            name: req.body.name,
+            surname: req.body.surname,
+            img: req.body.img,
+            gender: req.body.gender,
+            birthday: req.body.birthday,
+            bloodType: req.body.bloodType,
+            notes: req.body.notes
+        }
     }
     try {
         var createdChild = await ChildrenService.createChild(Entity)
         return res.status(200).json({createdChild, message: "Succesfully Created Child"})
     } catch (e) {
         console.log(e)
-        return res.status(400).json({status: 400, message: "User Creation was Unsuccesfull"})
+        return res.status(400).json({status: 400, message: "Child Creation was Unsuccesfull"})
     }
 }
 
@@ -61,14 +60,17 @@ exports.updateChild = async function (req, res, next) {
         return res.status(404).json({status: 404, message: "Name be present"})
     }
     var Entity = {
-        id: req.body.id ? req.body.id : null,
-        name: req.body.name ? req.body.name : null,
-        username: req.body.username ? req.body.username : null,
-        imgName: req.body.imgName ? req.body.imgName : null,
-        gender: req.body.gender ? req.body.gender : null,
-        birthday: req.body.birthday ? req.body.birthday : null,
-        bloodType: req.body.bloodType ? req.body.bloodType : null,
-        notes: req.body.notes ? req.body.notes : null
+        email: req.body.email,
+        child: {
+            id: req.body.id ? req.body.id : null,
+            name: req.body.name ? req.body.name : null,
+            surname: req.body.surname ? req.body.surname : null,
+            img: req.body.imgName ? req.body.img : null,
+            gender: req.body.gender ? req.body.gender : null,
+            birthday: req.body.birthday ? req.body.birthday : null,
+            bloodType: req.body.bloodType ? req.body.bloodType : null,
+            notes: req.body.notes ? req.body.notes : null
+        }
     }
     try {
         var updatedChild = await ChildrenService.updateChild(Entity)
@@ -79,11 +81,10 @@ exports.updateChild = async function (req, res, next) {
 }
 
 exports.removeChild = async function (req, res, next) {
-
     var id = req.params.id;
     try {
         var deleted = await ChildrenService.deleteChild(id);
-        res.status(200).send("Succesfully Deleted");
+        res.status(200).send("Child Succesfully Deleted");
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message})
     }
@@ -131,5 +132,3 @@ exports.getImagenUserById = async function (req, res, next) {
         return res.status(400).json({status: 400, message: e.message});
     }
 }
-    
-    

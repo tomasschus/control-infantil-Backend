@@ -2,9 +2,9 @@ var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 
 
-var NinioSchema = new mongoose.Schema({
+var ChildSchema = new mongoose.Schema({
     emailUser: String,
-    ninioId: String,
+    id: String,
     imageName: String,
     name: String,
     surname: String,
@@ -16,7 +16,7 @@ var NinioSchema = new mongoose.Schema({
     date: Date
 })
 
-NinioSchema.plugin(mongoosePaginate)
-const Ninio = mongoose.model('Ninio', NinioSchema)
+ChildSchema.plugin(mongoosePaginate)
+const Child = mongoose.model('Child', ChildSchema)
 
-module.exports = Ninio;
+module.exports = Child;

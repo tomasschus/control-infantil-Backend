@@ -1,8 +1,8 @@
 var mongoose = require('mongoose')
 var mongoosePaginate = require('mongoose-paginate')
 
-var NinioControlSchema = new mongoose.Schema({
-    ninioId: String,
+var ChildControlSchema = new mongoose.Schema({
+    id: String,
     date: Date,
     place: String,
     weight: Number, // [kg]
@@ -11,7 +11,7 @@ var NinioControlSchema = new mongoose.Schema({
     notes: String
 })
 
-NinioControlSchema.plugin(mongoosePaginate)
-const NinioControl = mongoose.model('NinioControl', NinioControlSchema)
+ChildControlSchema.plugin(mongoosePaginate)
+const ChildControl = mongoose.model('ChildControl', ChildControlSchema)
 
-module.exports = NinioControl;
+module.exports = ChildControl;

@@ -1,5 +1,5 @@
 // Gettign the Newly created Mongoose Model we just created 
-var NinioControl = require('../models/NinioControl.model');
+var NinioControl = require('../models/ChildControl.model');
 var jwt = require('jsonwebtoken');
 
 // Saving the context of this module inside the _the variable

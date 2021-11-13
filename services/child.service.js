@@ -1,31 +1,59 @@
 // Gettign the Newly created Mongoose Model we just created 
-var Ninio = require('../models/Ninio.model');
+var Child = require('../models/Child.model');
+var User = require('../models/User.model');
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 
 // Saving the context of this module inside the _the variable
 _this = this
 
-// Async function to get the User List
-exports.getChildren = async function (query, page, limit) {
+exports.getAllChildren = async function (query, page, limit) {
+    // Options setup for the mongoose paginate
     var options = {
         page,
         limit
     }
+    // Try Catch the awaited promise to handle the error 
     try {
         console.log("Query",query)
-        var Children = await Ninio.paginate(query, options)
-        return Children;
-
+        var Users = await Child.paginate(query, options)
+        // Return the Userd list that was retured by the mongoose promise
+        return Users;
     } catch (e) {
+        // return a Error message describing the reason 
         console.log("error services",e)
         throw Error('Error while Paginating Children');
     }
 }
 
+exports.getChildren = async function (mail, page, limit) {
+    // Try Catch the awaited promise to handle the error 
+    try {
+        var Children = await Child.find({emailUser: mail})
+        // Return the Userd list that was retured by the mongoose promise
+        return Children;
+
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log("error services",e)
+        throw Error('Error while Paginating Users');
+    }
+}
+
 exports.createChild = async function (entity) {
-    var newChild = new User({
-        emailUser: entity.email,
+    try {
+        //Find the old User Object by the Id
+        var user = await User.findOne({email: entity.email})
+    } catch (e) {
+        throw Error("Error occured while logging the User")
+    }
+    // If no old User Object exists return false
+    console.log("RESP: ",user)
+    if (!user) {
+        return false;
+    }
+    var newChild = new Child({
+        emailUser: user.email,
         name: entity.child.name,
         surname: entity.child.surname,
         imageName: entity.child.img,
@@ -35,11 +63,10 @@ exports.createChild = async function (entity) {
         notes: entity.child.notes,
         date: new Date()
     })
-
     try {
         var savedChild = await newChild.save();
         var token = jwt.sign({
-            id: savedChild.ninioId
+            id: savedChild._id
         }, process.env.SECRET, {
             expiresIn: 86400 // expires in 24 hours
         });
@@ -51,26 +78,26 @@ exports.createChild = async function (entity) {
 }
 
 exports.updateChild = async function (entity) {
-    var id = {ninioId: entity.id}
     try {
         //Find the old User Object by the Id
-        var old = await Ninio.findOne(id);
+        var old = await Child.findOne({_id: entity.child.id});
     } catch (e) {
         throw Error("Error occured while Finding the User")
     }
+    console.log("RESP: ", old)
     // If no old Object exists return false
     if (!old) {
         return false;
     }
     //Edit the User Object
     old.name = entity.child.name
-    old.username = entity.child.username
-    old.imageName = entity.child.imgName
+    old.surname = entity.child.surname
+    old.imageName = entity.child.img
     old.gender = entity.child.gender
     old.birthday = entity.child.birthday
     old.bloodType = entity.child.bloodType
     old.notes = entity.child.notes
-
+    console.log("RESP: ", old)
     try {
         var savedChild = await old.save()
         return savedChild;
@@ -81,8 +108,8 @@ exports.updateChild = async function (entity) {
 
 exports.deleteChild = async function (id) {
     try {
-        var deleted = await Ninio.remove({
-            ninioId: id
+        var deleted = await Child.remove({
+            _id: id
         })
         if (deleted.n === 0 && deleted.ok === 1) {
             throw Error("Child Could not be deleted")
