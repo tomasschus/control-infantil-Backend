@@ -84,8 +84,17 @@ exports.createUser = async function (user) {
 exports.logUser = async function (user) {
     try {
         var loginUser = await this.getUserByEmail(user.email)
-        if(loginUser!=null){            
-           return bcrypt.compareSync(user.password, loginUser.password)
+        if (loginUser != null) {
+            if (bcrypt.compareSync(user.password, loginUser.password)) {
+                return jwt.sign({
+                    id: loginUser._id
+                }, process.env.SECRET, {
+                    expiresIn: 86400 // expires in 24 hours
+                });
+            }
+            else{
+                return null
+            }
         }
         return null
     } catch (e) {
