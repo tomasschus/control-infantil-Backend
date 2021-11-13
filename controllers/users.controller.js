@@ -90,21 +90,21 @@ exports.removeUser = async function (req, res, next) {
 }
 
 exports.loginUser = async function (req, res, next) {
-        var User = {
-            email: req.body.email,
-            password: req.body.password
+    var User = {
+        email: req.body.email,
+        password: req.body.password
+    }
+    try {
+        var loginUser = await UserService.logUser(User);
+        if(loginUser!=null){
+            return res.status(201).json({token:loginUser, message: "Succesfully login"})
         }
-        try {
-            var loginUser = await UserService.logUser(User);
-            if(loginUser){
-                return res.status(201).json({loginUser, message: "Succesfully login"})
-            }
-            else{
-                return res.status(500).json({error:true, message: "Invalid username or password"})
-            }
-        } catch (e) {
-            return res.status(400).json({status: 400, message: "Invalid username or password"})
+        else{
+            return res.status(500).json({error:true, message: "Invalid username or password"})
         }
+    } catch (e) {
+        return res.status(400).json({status: 400, message: "Invalid username or password"})
+    }
 }
 
 exports.logoutUser = async function (req, res, next) {
