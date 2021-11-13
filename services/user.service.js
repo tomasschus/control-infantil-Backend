@@ -20,7 +20,6 @@ exports.getUsers = async function (query, page, limit) {
         var Users = await User.paginate(query, options)
         // Return the Userd list that was retured by the mongoose promise
         return Users;
-
     } catch (e) {
         // return a Error message describing the reason 
         console.log("error services",e)
@@ -44,18 +43,28 @@ exports.getUserByEmail = async function (mail) {
     }
 }
 
-
 exports.createUser = async function (user) {
+    try {
+        //Find the old User Object by the Id
+        var oldUser = await User.findOne({email: user.email})
+    } catch (e) {
+        throw Error("Error occured while logging the User")
+    }
+    // If no old User Object exists return false
+    console.log("RESP: ",oldUser)
+    if (oldUser) {
+        return false;
+    }
     // Creating a new Mongoose Object by using the new keyword
     var hashedPassword = bcrypt.hashSync(user.password, 8);
-    
     var newUser = new User({
         name: user.name,
+        surname: user.surname,
         email: user.email,
         date: new Date(),
-        password: hashedPassword
+        password: hashedPassword,
+        telephone: user.telephone
     })
-
     try {
         // Saving the User 
         var savedUser = await newUser.save();
@@ -72,15 +81,30 @@ exports.createUser = async function (user) {
     }
 }
 
-//exports.loginUser
-
-exports.updateUser = async function (user) {
-    
-    var id = {name :user.name}
-
+exports.logUser = async function (user, active) {
     try {
         //Find the old User Object by the Id
-        var oldUser = await User.findOne(id);
+        var oldUser = await User.findOne({email: user.email})
+    } catch (e) {
+        throw Error("Error occured while logging the User")
+    }
+    // If no old User Object exists return false
+    if (!oldUser) {
+        return false;
+    }
+    oldUser.active = active
+    try {
+        var savedUser = await oldUser.save()
+        return savedUser;
+    } catch (e) {
+        throw Error("And Error occured while logging the User");
+    }
+}
+
+exports.updateUser = async function (user) {
+    try {
+        //Find the old User Object by the Id
+        var oldUser = await User.findOne({email: user.email})
     } catch (e) {
         throw Error("Error occured while Finding the User")
     }
@@ -91,7 +115,9 @@ exports.updateUser = async function (user) {
     //Edit the User Object
     var hashedPassword = bcrypt.hashSync(user.password, 8);
     oldUser.name = user.name
-    oldUser.email = user.email
+    oldUser.surname = user.surname
+    oldUser.telephone = user.telephone
+    //oldUser.email = user.email
     oldUser.password = hashedPassword
     try {
         var savedUser = await oldUser.save()

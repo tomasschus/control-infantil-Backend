@@ -61,7 +61,7 @@ exports.removeControl = async function (req, res, next) {
     var id = req.params.id;
     try {
         var deleted = await ControlService.removeControl(id);
-        res.status(200).send("Succesfully Deleted... ");
+        res.status(200).send("Succesfully Deleted");
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message})
     }

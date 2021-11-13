@@ -38,7 +38,7 @@ exports.createVaccine = async function (req, res, next) {
 exports.updateVaccine = async function (req, res, next) {
     // Id is necessary for the update
     if (!req.body.id || !req.body.vaccineId) {
-        return res.status(400).json({status: 400., message: "Id or VaccineId be present"})
+        return res.status(400).json({status: 400, message: "Id or VaccineId be present"})
     }
     var Entity = {
         id: req.body.id ? req.body.id : null,
@@ -49,7 +49,7 @@ exports.updateVaccine = async function (req, res, next) {
         var updatedChild = await VaccineService.updateVaccine(Entity)
         return res.status(200).json({status: 200, data: updatedChild, message: "Succesfully Updated Child"})
     } catch (e) {
-        return res.status(400).json({status: 400., message: e.message})
+        return res.status(400).json({status: 400, message: e.message})
     }
 }
 
@@ -57,7 +57,7 @@ exports.removeVaccine = async function (req, res, next) {
     var id = req.params.id;
     try {
         var deleted = await VaccineService.deleteVaccine(id);
-        res.status(200).send("Succesfully Deleted... ");
+        res.status(200).send("Succesfully Deleted");
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message})
     }

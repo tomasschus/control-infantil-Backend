@@ -2,35 +2,33 @@ let nodemailer = require('nodemailer');
 
 
 exports.sendEmail = async function (req, res, next){
-    
     // Definimos el transporter
     var transporter = nodemailer.createTransport({
-        //host: 'svp-02715.fibercorp.local',
-        //secure: false,
-        port:25,
-        service: 'Gmail',
+        service: 'gmail',
         auth: {
-            user: 'pruebalabs@gmail.com',//poner cuenta gmail
-            pass: 'QWERasdf1234'  //contraseña cuenta  IMPORTANTE HABILITAR acceso apps poco seguras google
+            user: 'andrev.rojas.93@gmail.com',//TODO: remove
+            pass: 'Analytics@2021'//TODO: remove - contraseña cuenta  IMPORTANTE HABILITAR acceso apps poco seguras google
         }
      });
     // Definimos el email
     var mailOptions = {
-        from: 'pruebalabs@gmail.com',
-        to: req.body.destinatario,
-        subject: req.body.asunto,
-        html: '<h1> y aca se muestra el texto  </h1><h3>' +req.body.texto+'</h3>',
-        
+        from: 'andrev.rojas.93@gmail.com',//TODO: remove
+        to: req.body.receiver,
+        subject: req.body.subject,
+        html: '<h1> DigiControl.com </h1>'
+            + '<br/>'
+            + '<h3> Confirmación de su cuenta en nuestra plataforma: </h3>'
+            + '<br/>'
+            + 'Usuario: <b>' + req.body.username + '</b> <br/>'
+            + 'Correo electrónico: <b>' + req.body.email + '</b> <br/>'
+            + '<br/>'
+            + '<p>Que tengas un buen dìa! :)</p>'
     };
-    console.log("mail",mailOptions)
-    // Enviamos el email
     try
     {
         let info = await transporter.sendMail(mailOptions);
-        console.log("Message sent: %s", info.messageId);
-    }
-    catch(error)
-    {
+        return res.status(200).json({status: 200, data: info.messageId, message: "Succesfully Message sent"});
+    }catch(error){
         console.log("Error envio mail: ",error);            
     }
 };

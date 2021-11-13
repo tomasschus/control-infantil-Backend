@@ -11,17 +11,17 @@ var Authorization = require('../../auth/authorization');
 router.get('/test', function(req, res, next) {
     res.send('Llegaste a la ruta de  api/user.routes');
   });
-router.post('/registration', UserController.createUser)
-router.post('/login', UserController.loginUser)
-//router.post('/logout', UserController.logoutUser)
+router.post('/', UserController.createUser)
 router.get('/',Authorization, UserController.getUsers)
-router.post('/userByMail', Authorization, UserController.getUsersByMail)
 router.put('/', Authorization, UserController.updateUser)
 router.delete('/:id', Authorization, UserController.removeUser)
+router.post('/login', UserController.loginUser)
+router.post('/logout', UserController.logoutUser)
+router.post('/find', Authorization, UserController.getUsersByMail)
+router.post('/email',MailController.sendEmail)
 router.post('/guardarImgUser',UserController.guardarImagenUser)
 router.post('/uploadImg',UploadController.uploadFilesImgUser);
 router.post('/imgUserByMail',Authorization,UserController.getImagenUserByMail)
-router.post('/sendMail',MailController.sendEmail)
 
 
 // Export the Router
