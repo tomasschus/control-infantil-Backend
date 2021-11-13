@@ -177,7 +177,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE - /api/users",
+			"name": "DELETE - /api/users/{id}",
 			"protocolProfileBehavior": {
 				"followRedirects": false
 			},
@@ -579,7 +579,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE - /api/children",
+			"name": "DELETE - /api/children/{id}",
 			"protocolProfileBehavior": {
 				"followRedirects": false
 			},
@@ -588,12 +588,12 @@
 				"header": [
 					{
 						"key": "x-access-token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGYyN2M3MWU4OTM3MDlmY2Y2YTYyYiIsImlhdCI6MTYzNjc3MTc4MywiZXhwIjoxNjM2ODU4MTgzfQ.vEAUaNmXkhXLAHQo_8AgGMQ4iJCg5iPntgi7InoUEX8",
-						"type": "text"
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGYyN2M3MWU4OTM3MDlmY2Y2YTYyYiIsImlhdCI6MTYzNjc3MTc4MywiZXhwIjoxNjM2ODU4MTgzfQ.vEAUaNmXkhXLAHQo_8AgGMQ4iJCg5iPntgi7InoUEX8"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:4000/api/children/618f403d932ebe275c743fb3",
+					"raw": "http://localhost:4000/api/children/618f4fe006876e1e1c9eb8f5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -602,7 +602,231 @@
 					"path": [
 						"api",
 						"children",
-						"618f403d932ebe275c743fb3"
+						"618f4fe006876e1e1c9eb8f5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - /api/controls/test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/controls/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"controls",
+						"test"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - /api/controls",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/controls",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"controls"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET - /api/controls/{id}",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"618f44e38663c81c30904397\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/controls/find",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"controls",
+						"find"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST - /api/controls",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"childId\": \"618f44e38663c81c30904397\",\r\n    \"place\": \"Hospital General de Atención del Oeste\",\r\n    \"weight\": 4.5,\r\n    \"height\": 15.5,\r\n    \"diameter\": 8,\r\n    \"notes\": \"This is another note\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/controls",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"controls"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT - /api/controls",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"618f403d932ebe275c743fb3\",\r\n    \"name\": \"Joponsio\",\r\n    \"surname\": \"Rojas\",\r\n    \"img\": \"/src/profile.jpg\",\r\n    \"gender\": \"M\",\r\n    \"birthday\": \"21/08/2019\",\r\n    \"bloodType\": \"RH+\",\r\n    \"notes\": \"This is a NEW note\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/children",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"children"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE - /api/controls/{id}",
+			"protocolProfileBehavior": {
+				"followRedirects": false
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-access-token",
+						"type": "text",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGYyN2M3MWU4OTM3MDlmY2Y2YTYyYiIsImlhdCI6MTYzNjc3MTc4MywiZXhwIjoxNjM2ODU4MTgzfQ.vEAUaNmXkhXLAHQo_8AgGMQ4iJCg5iPntgi7InoUEX8"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/controls/618f52f2b3b3bb1f6cc49939",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"controls",
+						"618f52f2b3b3bb1f6cc49939"
 					]
 				}
 			},
