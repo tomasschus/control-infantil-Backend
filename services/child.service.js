@@ -80,14 +80,15 @@ exports.createChild = async function (entity) {
 exports.updateChild = async function (entity) {
     try {
         //Find the old User Object by the Id
-        var old = await Child.findOne({_id: entity.child.id});
+        var old = await Child.findById(entity.child._id);
+        console.log(entity)
     } catch (e) {
         throw Error("Error occured while Finding the User")
     }
     console.log("RESP: ", old)
     // If no old Object exists return false
     if (!old) {
-        return false;
+        return "id object not fount";
     }
     //Edit the User Object
     old.name = entity.child.name

@@ -56,13 +56,13 @@ exports.createChild = async function (req, res, next) {
 
 exports.updateChild = async function (req, res, next) {
     // Id is necessary for the update
-    if (!req.body.id) {
-        return res.status(404).json({status: 404, message: "Name be present"})
+    if (!req.body._id) {
+        return res.status(404).json({status: 404, message: "id be present"})
     }
     var Entity = {
         email: req.body.email,
         child: {
-            id: req.body.id ? req.body.id : null,
+            _id: req.body._id ? req.body._id : null,
             name: req.body.name ? req.body.name : null,
             surname: req.body.surname ? req.body.surname : null,
             img: req.body.imgName ? req.body.img : null,

@@ -4,12 +4,11 @@ var mongoosePaginate = require('mongoose-paginate')
 
 var ChildSchema = new mongoose.Schema({
     emailUser: String,
-    _id: String,
     imageName: String,
     name: String,
     surname: String,
     gender: String, // F or M
-    birthday: String, // Format: DD/MM/YYYY
+    birthday: String, // Format: YYYY-MM-DD
     age: String,
     bloodType: String,
     notes: String,
