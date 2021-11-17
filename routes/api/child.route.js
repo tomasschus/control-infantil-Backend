@@ -10,7 +10,7 @@ var RecipeController = require('../../controllers/recipe.controller');*/
 
 // Authorize each API with middleware and map to the Controller Functions
 router.get('/test', function(req, res, next) {
-  res.send('Llegaste a la ruta de  api/child.route');
+  res.send('Llegaste a la ruta de api/child.route');
 });
 //Children
 router.post('/', ChildController.createChild)

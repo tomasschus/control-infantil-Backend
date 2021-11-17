@@ -18,6 +18,8 @@ tags:
   description: "Get information to publish in home"
 - name: "/api/users"
   description: "Everything about Users"
+- name: "/api/notifications"
+  description: "Everything about Notifications"
 schemes:
 - "http"
 paths:
@@ -79,7 +81,7 @@ paths:
       operationId: "childrenTest"
       responses:
         "200":
-          description: "Llegaste a la ruta de  api/child.routes"
+          description: "Llegaste a la ruta de api/child.route"
       deprecated: true
   /children/create:
     post:
@@ -108,7 +110,19 @@ paths:
           description: "User Creation was Unsuccesfull"
         "405":
           description: "Invalid input"
-  /users/registration:
+  /users:
+    get:
+      tags:
+      - "/api/users"
+      summary: "Get all users"
+      description: "Filter is not required"
+      operationId: "getAll"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        default:
+          description: "successful operation"
     post:
       tags:
       - "/api/users"
@@ -127,20 +141,7 @@ paths:
           $ref: "#/definitions/UserCreate"
       responses:
         default:
-          description: "successful operation"
-  /users:
-    get:
-      tags:
-      - "/api/users"
-      summary: "Get all users"
-      description: "Filter is not required"
-      operationId: "getAll"
-      produces:
-      - "application/xml"
-      - "application/json"
-      responses:
-        default:
-          description: "successful operation"
+          description: "Succesfully Created User"
     put:
       tags:
       - "/api/users"
@@ -193,7 +194,7 @@ paths:
       operationId: "userTest"
       responses:
         "200":
-          description: "Llegaste a la ruta de  api/user.routes"
+          description: "Llegaste a la ruta de api/user.route"
       deprecated: true
   /users/login:
     post:
@@ -259,6 +260,39 @@ paths:
           description: "Invalid username or password"
         "404":
           description: "Error while Paginating Users"
+  /notifications/send:
+    post:
+      tags:
+      - "/api/notifications"
+      summary: "Send notification"
+      description: "This can only be done automaticaly when the user is logged and a new account was created."
+      operationId: "send"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Notify by email to user"
+        required: true
+        schema:
+          $ref: "#/definitions/Notification"
+      responses:
+        "200":
+          description: "Succesfully Notification sent"
+        "400":
+          description: "Field is required"
+  /notifications/test:
+    get:
+      tags:
+      - "/api/notifications"
+      summary: "Path deprecated"
+      description: "Path for testing"
+      operationId: "notificationTest"
+      responses:
+        "200":
+          description: "Llegaste a la ruta de api/notification.route"
+      deprecated: true
 definitions:
   Child:
     type: "object"
@@ -306,6 +340,17 @@ definitions:
         type: "string"
     xml:
       name: "UserMail"
+  Notification:
+    properties:
+      action:
+        type: "string"
+        enum:
+          - create
+          - delete
+      email:
+        type: "string"
+    xml:
+      name: "Notification"
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

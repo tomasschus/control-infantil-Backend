@@ -2,14 +2,14 @@ var express = require('express')
 var router = express.Router()
 var UserController = require('../../controllers/users.controller');
 var UploadController = require('../../controllers/upload.controller');
-var MailController = require('../../controllers/mail.controller');
+var MailController = require('../../controllers/notification.controller');
 var Authorization = require('../../auth/authorization');
 
 
 // Authorize each API with middleware and map to the Controller Functions
 /* GET users listing. */
 router.get('/test', function(req, res, next) {
-    res.send('Llegaste a la ruta de  api/user.routes');
+    res.send('Llegaste a la ruta de api/info.route');
   });
 router.post('/registration', UserController.createUser)
 router.post('/login/', UserController.loginUser)

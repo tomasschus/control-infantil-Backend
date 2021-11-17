@@ -46,8 +46,9 @@ exports.createUser = async function (req, res, next) {
     try {
         // Calling the Service function with the new object from the Request Body
         var createdUser = await UserService.createUser(User)
+        console.log('RESP in controller: '+ createdUser)
         if(!createdUser) {
-            res.status(404).json({status: 404, message: "User not found"})
+            res.status(404).json({status: 404, message: "User already registered"})
         }
         return res.status(201).json({createdUser, message: "Succesfully Created User"})
     } catch (e) {
@@ -66,6 +67,7 @@ exports.updateUser = async function (req, res, next) {
         surname: req.body.surname ? req.body.surname : null,
         name: req.body.name ? req.body.name : null,
         email: req.body.email ? req.body.email : null,
+        dni: req.body.dni ? req.body.dni : null,
         password: req.body.password ? req.body.password : null,
         telephone: req.body.telephone ? req.body.telephone : null
     }
