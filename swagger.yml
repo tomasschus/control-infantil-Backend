@@ -15,7 +15,7 @@ tags:
 - name: "/api/children"
   description: "Everything about your Children"
 - name: "/api/info"
-  description: "Get information to publish in home"
+  description: "Everything about Home info"
 - name: "/api/users"
   description: "Everything about Users"
 - name: "/api/notifications"
@@ -24,6 +24,32 @@ schemes:
 - "http"
 paths:
   /children:
+    post:
+      tags:
+      - "/api/children"
+      summary: "Add a new child to the family"
+      description: ""
+      operationId: "addChild"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Child object that needs to be added to the family"
+        required: true
+        schema:
+          $ref: "#/definitions/Child"
+      responses:
+        "200":
+          description: "Succesfully Created Child"
+        "400":
+          description: "User Creation was Unsuccesfull"
+        "405":
+          description: "Invalid input"
     put:
       tags:
       - "/api/children"
@@ -83,13 +109,34 @@ paths:
         "200":
           description: "Llegaste a la ruta de api/child.route"
       deprecated: true
-  /children/create:
+  /info:
+    get:
+      tags:
+      - "/api/info"
+      summary: "Get all Info contents"
+      description: "Filter is required"
+      operationId: "getInfo"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "type"
+        in: "query"
+        description: "Type for filtering data"
+        required: true
+        type: "string"
+        enum:
+          - info
+          - news
+      responses:
+        "200":
+          description: "Succesfully Info Recieved"
     post:
       tags:
-      - "/api/children"
-      summary: "Add a new child to the family"
+      - "/api/info"
+      summary: "Add a new content in Home"
       description: ""
-      operationId: "addChild"
+      operationId: "addInfo"
       consumes:
       - "application/json"
       - "application/xml"
@@ -99,17 +146,48 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Child object that needs to be added to the family"
+        description: "Content object to include in Home page"
         required: true
         schema:
-          $ref: "#/definitions/Child"
+          $ref: "#/definitions/Content"
       responses:
         "200":
-          description: "Succesfully Created Child"
+          description: "Succesfully Created Info"
         "400":
-          description: "User Creation was Unsuccesfull"
-        "405":
-          description: "Invalid input"
+          description: "Info Creation was Unsuccesfull"
+  /info/{id}:
+    delete:
+      tags:
+      - "/api/info"
+      summary: "Deletes a content"
+      description: ""
+      operationId: "deleteInfo"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Content id to remove"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Succesfully Info Deleted"
+        "404":
+          description: "Info Could not be deleted"
+  /info/test:
+    get:
+      tags:
+      - "/api/info"
+      summary: "Path deprecated"
+      description: "Path for testing"
+      operationId: "infoTest"
+      responses:
+        "200":
+          description: "Llegaste a la ruta de api/info.route"
+      deprecated: true
   /users:
     get:
       tags:
@@ -165,6 +243,7 @@ paths:
           description: "Invalid user supplied"
         "404":
           description: "Error occured while Finding the User"
+  /users/{id}:
     delete:
       tags:
       - "/api/users"
@@ -176,7 +255,7 @@ paths:
       - "application/json"
       parameters:
       - name: "id"
-        in: "query"
+        in: "path"
         description: "Id user to delete"
         required: true
         type: "string"
@@ -351,6 +430,23 @@ definitions:
         type: "string"
     xml:
       name: "Notification"
+  Content:
+    properties:
+      type:
+        type: "string"
+        enum:
+          - info
+          - news
+      title:
+        type: "string"
+      description:
+        type: "string"
+      imgUrl:
+        type: "string"
+      button:
+        type: "string"
+    xml:
+      name: "Content"
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"
