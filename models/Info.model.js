@@ -3,7 +3,12 @@ var mongoosePaginate = require('mongoose-paginate')
 
 
 var InfoSchema = new mongoose.Schema({
-    imageName: String,
+    id: String,
+    type: String,
+    title: String,
+    description: String,
+    imgUrl: String,
+    button: String,
     date: Date
 })
 

@@ -1,8 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var UserController = require('../../controllers/users.controller');
-var UploadController = require('../../controllers/upload.controller');
-var MailController = require('../../controllers/notification.controller');
+var InfoController = require('../../controllers/info.controller');
 var Authorization = require('../../auth/authorization');
 
 
@@ -11,16 +9,9 @@ var Authorization = require('../../auth/authorization');
 router.get('/test', function(req, res, next) {
     res.send('Llegaste a la ruta de api/info.route');
   });
-router.post('/registration', UserController.createUser)
-router.post('/login/', UserController.loginUser)
-router.get('/',Authorization, UserController.getUsers)
-router.post('/userByMail', Authorization, UserController.getUsersByMail)
-router.put('/', Authorization, UserController.updateUser)
-router.delete('/:id', Authorization, UserController.removeUser)
-router.post('/guardarImgUser',UserController.guardarImagenUser)
-router.post('/uploadImg',UploadController.uploadFilesImgUser);
-router.post('/imgUserByMail',Authorization,UserController.getImagenUserByMail)
-router.post('/sendMail',MailController.sendEmail)
+router.post('/', InfoController.createInfo)
+router.get('/', InfoController.getInfo)
+router.delete('/:id', Authorization, InfoController.removeInfo)
 
 
 // Export the Router
