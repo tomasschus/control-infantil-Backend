@@ -43,33 +43,37 @@ $ npm run start
 or
 
 ```shell
-> node app.js
+$ node app.js
 ```
 
 
 ## Documentarion using SWAGGER
 
-http://localhost:4000/api-docs/
+Open the PATH below in your browser:
 
-or just open link bellow and import in your Postman app
-
-[Swagger DigiControl.com](https://github.com/tomasschus/control-infantil-Backend/blob/master/swagger.yml)
+> http://localhost:4000/api-docs/
 
 
-You can open and render yml content as well
+1. Just open link bellow and import in your Postman app
 
-[Swagger editor online](https://editor.swagger.io/)
+- swagger.yml [https://github.com/tomasschus/control-infantil-Backend/blob/master/swagger.yml]
+
+
+2. You can open and render yml extension as well
+
+- Swagger editor online [https://editor.swagger.io/]
 
 
 ## Documentarion using Postman
 
 DigiControl.com collection was export as a JSON file using the recommended version: *Collection v2.1*
 
-*Path:* control-infantil-Backend\postman\DigiControl.com.postman_collection.json
+**Path:**
+> control-infantil-Backend\postman\DigiControl.com.postman_collection.json
 
-or just open link bellow and import in your Postman app
+Or just open link bellow and import in your Postman app
 
-[DigiControl.com collection](https://github.com/tomasschus/control-infantil-Backend/blob/master/postman/DigiControl.com.postman_collection.json)
+- DigiControl.com collection [https://github.com/tomasschus/control-infantil-Backend/blob/master/postman/DigiControl.com.postman_collection.json]
 
 
 ## Running the tests
