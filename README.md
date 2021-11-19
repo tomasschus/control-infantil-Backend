@@ -2,11 +2,12 @@
 
 ### Prerequisites
 
-Node
-npm
-Express
-jsonwebtoken
-mongoose
+* Node
+* npm
+* Express
+* jsonwebtoken
+* mongoose
+* swagger-ui-express
 
 How to create a RESTful CRUD API using Nodejs?
 
@@ -30,6 +31,47 @@ We are using mongodb to register the user and jsonwebtoken to create the token.
 $ npm install
 $ bower install (if require)
 ```
+
+### Start app
+
+Run project using following commands:
+
+```shell
+$ npm run start
+```
+
+or
+
+```shell
+> node app.js
+```
+
+
+## Documentarion using SWAGGER
+
+http://localhost:4000/api-docs/
+
+or just open link bellow and import in your Postman app
+
+[Swagger DigiControl.com](https://github.com/tomasschus/control-infantil-Backend/blob/master/swagger.yml)
+
+
+You can open and render yml content as well
+
+[Swagger editor online](https://editor.swagger.io/)
+
+
+## Documentarion using Postman
+
+DigiControl.com collection was export as a JSON file using the recommended version: *Collection v2.1*
+
+*Path:* control-infantil-Backend\postman\DigiControl.com.postman_collection.json
+
+or just open link bellow and import in your Postman app
+
+[DigiControl.com collection](https://github.com/tomasschus/control-infantil-Backend/blob/master/postman/DigiControl.com.postman_collection.json)
+
+
 ## Running the tests
 
 It consist of a User model and controller. The model

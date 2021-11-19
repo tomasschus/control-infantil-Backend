@@ -544,12 +544,12 @@
 					{
 						"key": "x-access-token",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGVlOTY4NzNmNzQxMTkxMDllMTY0YiIsImlhdCI6MTYzNjc1NTgxNywiZXhwIjoxNjM2ODQyMjE3fQ.wFiRWGnFRcpIM_SQvB_fhykUAkGpzenbxXjsUD8I89g"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdlOTYyOTljZDEwMWFlMGQxMmJjYiIsImlhdCI6MTYzNzM0NTYzNSwiZXhwIjoxNjM3NDMyMDM1fQ.TmeVX46BojtiuClcpMVQd-zMrFJN-DSN2iuwp_epxQA"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": \"618f403d932ebe275c743fb3\",\r\n    \"name\": \"Joponsio\",\r\n    \"surname\": \"Rojas\",\r\n    \"img\": \"/src/profile.jpg\",\r\n    \"gender\": \"M\",\r\n    \"birthday\": \"21/08/2019\",\r\n    \"bloodType\": \"RH+\",\r\n    \"notes\": \"This is a NEW note\"\r\n}",
+					"raw": "{\r\n    \"_id\": \"618f44e38663c81c30904397\",\r\n    \"name\": \"Mai\",\r\n    \"surname\": \"Rojas\",\r\n    \"img\": \"https://images.clarin.com/2020/06/30/la-beba-nacio-con-una___z_cq3-ba1_720x0__1.jpg\",\r\n    \"gender\": \"Femenino\",\r\n    \"birthday\": \"2020-06-18\",\r\n    \"bloodType\": \"O-\",\r\n    \"notes\": \"Asma crónica con tratamiento prolongado.\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -813,11 +813,11 @@
 					{
 						"key": "x-access-token",
 						"type": "text",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOGYyN2M3MWU4OTM3MDlmY2Y2YTYyYiIsImlhdCI6MTYzNjc3MTc4MywiZXhwIjoxNjM2ODU4MTgzfQ.vEAUaNmXkhXLAHQo_8AgGMQ4iJCg5iPntgi7InoUEX8"
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdlOTYyOTljZDEwMWFlMGQxMmJjYiIsImlhdCI6MTYzNzM0NTYzNSwiZXhwIjoxNjM3NDMyMDM1fQ.TmeVX46BojtiuClcpMVQd-zMrFJN-DSN2iuwp_epxQA"
 					}
 				],
 				"url": {
-					"raw": "http://localhost:4000/api/controls/618f52f2b3b3bb1f6cc49939",
+					"raw": "http://localhost:4000/api/controls/61974b88a4d1071e24319a07",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -826,7 +826,7 @@
 					"path": [
 						"api",
 						"controls",
-						"618f52f2b3b3bb1f6cc49939"
+						"61974b88a4d1071e24319a07"
 					]
 				}
 			},
@@ -880,7 +880,7 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:4000/api/info?type=news",
+					"raw": "http://localhost:4000/api/info?type=carousel",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -893,7 +893,8 @@
 					"query": [
 						{
 							"key": "type",
-							"value": "news"
+							"value": "carousel",
+							"description": "news"
 						}
 					]
 				}
