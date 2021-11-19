@@ -9,7 +9,6 @@ var controls = require('./api/control.route')
 var vaccines = require('./api/vaccine.route')
 var info = require('./api/info.route')
 var notification = require('./api/notification.route')
-//var percentils = require('./api/percentil.route')
 //var calendar = require('./api/calendar.route')
 
 //Mapping
@@ -19,7 +18,6 @@ router.use('/controls', controls);
 router.use('/info', info);
 router.use('/vaccines', vaccines);
 router.use('/notifications', notification);
-//router.use('/percentils', percentils);
 //router.use('/calendar', calendar);
 
 module.exports = router;

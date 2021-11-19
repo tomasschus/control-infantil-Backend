@@ -65,7 +65,7 @@ exports.updateChild = async function (req, res, next) {
             _id: req.body._id ? req.body._id : null,
             name: req.body.name ? req.body.name : null,
             surname: req.body.surname ? req.body.surname : null,
-            img: req.body.imgName ? req.body.img : null,
+            img: req.body.img ? req.body.img : null,
             gender: req.body.gender ? req.body.gender : null,
             birthday: req.body.birthday ? req.body.birthday : null,
             bloodType: req.body.bloodType ? req.body.bloodType : null,
