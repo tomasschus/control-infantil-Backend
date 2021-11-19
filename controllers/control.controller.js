@@ -35,14 +35,15 @@ exports.getControlsById = async function (req, res, next) {
 
 exports.createControl = async function (req, res, next) {
     // Req.Body contains the form submit values.
-    console.log("llegue al controller",req.body)
     var Entity = {
-        childId: req.body.childId,
+        date:req.body.date,
         place: req.body.place,
         weight: req.body.weight,
         height: req.body.height,
         diameter: req.body.diameter,
-        notes: req.body.notes
+        notes: req.body.notes,
+        prescription: req.body.prescription,
+        childId: req.body.childId
     }
     try {
         var createdOne = await ControlService.createControl(Entity)

@@ -32,13 +32,15 @@ exports.getControls = async function (id, page, limit) {
 
 exports.createControl = async function (entity) {
     var newControl = new ChildControl({
-        childId: entity.childId,
+        date:entity.date,
+        dateCreated:new Date(),
         place: entity.place,
         weight: entity.weight,
         height: entity.height,
         diameter: entity.diameter,
         notes: entity.notes,
-        date: new Date()
+        prescription: entity.prescription,
+        childId: entity.childId
     })
 
     try {
