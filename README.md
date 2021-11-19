@@ -56,24 +56,23 @@ Open the PATH below in your browser:
 
 1. Just open link bellow and import in your Postman app
 
-- swagger.yml [https://github.com/tomasschus/control-infantil-Backend/blob/master/swagger.yml]
+swagger.yml [https://github.com/tomasschus/control-infantil-Backend/blob/master/swagger.yml]
 
 
 2. You can open and render yml extension as well
 
-- Swagger editor online [https://editor.swagger.io/]
+Swagger editor online [https://editor.swagger.io/]
 
 
 ## Documentarion using Postman
 
 DigiControl.com collection was export as a JSON file using the recommended version: *Collection v2.1*
 
-**Path:**
-> control-infantil-Backend\postman\DigiControl.com.postman_collection.json
-
 Or just open link bellow and import in your Postman app
 
-- DigiControl.com collection [https://github.com/tomasschus/control-infantil-Backend/blob/master/postman/DigiControl.com.postman_collection.json]
+- DigiControl.com collection
+
+[https://github.com/tomasschus/control-infantil-Backend/blob/master/postman/DigiControl.com.postman_collection.json]
 
 
 ## Running the tests
