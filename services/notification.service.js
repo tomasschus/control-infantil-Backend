@@ -31,7 +31,7 @@ exports.notify = async function (entity){
             _subject = 'DigiControl.com - Te queremos dar la bienvenida <3';
             _message = 'Estimad@ ' + entity.user.surname + ', ' + entity.user.name + ', <br/><br/>Le queremos dar la bienvenida :D <br/>';
             _content = 'Estos son sus datos de acceso a nuestra plataforma.<br/><br/>'
-                + (entity.user?.dni ? '<b>DNI:</b> ' + entity.user.dni + '<br/>' : '')
+                + (entity.user.dni ? '<b>DNI:</b> ' + entity.user.dni + '<br/>' : '')
                 + '<b>Correo electrónico:</b> ' + entity.user.email + '<br/>'
                 + '<b>Teléfono:</b> ' + entity.user.telephone + '<br/>';
             byebye = '<br/><a href="https://children.herokuapp.com/">Ir a DigiControl.com</a><br/><br/><p>Que tengas un buen día! :)</p>';
