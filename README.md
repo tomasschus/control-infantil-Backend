@@ -1,6 +1,6 @@
 # nodejs-secure restful-api with jwt web-Token
 
-### Prerequisites
+### Pre requisites
 
 * Node
 * npm
@@ -47,7 +47,7 @@ $ node app.js
 ```
 
 
-## Documentarion using SWAGGER
+## Documentation using SWAGGER (*.yml extension)
 
 Open the PATH below in your browser:
 
@@ -64,7 +64,7 @@ swagger.yml [https://github.com/tomasschus/control-infantil-Backend/blob/master/
 Swagger editor online [https://editor.swagger.io/]
 
 
-## Documentarion using Postman
+## Documentation using Postman (*.json extension)
 
 DigiControl.com collection was export as a JSON file using the recommended version: *Collection v2.1*
 
@@ -97,22 +97,43 @@ Open up your REST API testing tool of choice, I use Postman or Insomnia, but any
 
 Go back to your terminal and run node server.js. If it is running, stop it, save all changes to you files, and run node server.js again.
 
-Open up Postman and hit the register endpoint (http://localhost:3000/api/users/registration). Make sure to pick the POST method and x-www-form-url-encoded.
-Now, add some values. My user’s name is 'Mohammad' , email is 'mohdabdur786@gmail.com' and his password is 'Wow@123' 
+Open up Postman and hit the register endpoint (http://localhost:4000/api/users). Make sure to pick the POST method and x-www-form-url-encoded.
+Now add some values to create your user.
+
+> {
+>     "name": "Test",
+>     "surname": "Test",
+>     "dni": "1122334455",
+>     "email": "test@uade.edu.ar",
+>     "password": "UADE",
+>     "telephone": "1155995599"
+> }
 
 See the response? The token is a long jumbled string. 
-To try out the http://localhost:3000/api/users endpoint, first copy the token. Change the URL to http://localhost:3000/api/users , and the method to GET.
+
+To try out the http://localhost:4000/api/users endpoint, first copy the token. Change the URL to http://localhost:4000/api/users , and the method to GET.
 Now you can add the token to the request header.
 
 You will get list of users...
 
-Try to update users the http://localhost:3000/api/users endpoint, and the method to PUT with x-www-form-url-encoded.
-Now, add some values.Update name is 'Abdur' , email is 'mohdabdur786@gmail.com' and his password is 'Wow@123' 
+Try to update users the http://localhost:4000/api/users endpoint, and the method to PUT with x-www-form-url-encoded.
+Now change some values you add before.
 
-Delete some users hit http://localhost:3000/api/users/(_id) endpoint with the method DELETE.
+> {
+>     "name": "Andrea",
+>     "surname": "Rojas",
+>     "dni": "1122334455",
+>     "email": "email_de_pruebas@uade.edu.ar",
+>     "password": "PASSWORD",
+>     "telephone": "1155995599"
+> }
+
+Delete some users hit http://localhost:4000/api/users/{_id} endpoint with the method DELETE.
 
 ##Disclaimer: The logout endpoint is not needed. The act of logging out can solely be done through the client side. A token is usually kept in a cookie or the browser’s localstorage. Logging out is as simple as destroying the token on the client. This /logout endpoint is created to logically depict what happens when you log out. The token gets set to null.
 
-## License
+More details, open SWAGGER or Postman, as you prefer and check out what you need!
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Thanks!
+
+:)
