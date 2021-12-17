@@ -5,35 +5,39 @@ _this = this;
 
 // Async Controller function to get the To do List
 
-exports.getVaccinesByChild = async function (req, res, next) {
-    // Check the existence of the query parameters, If doesn't exists assign a default value
-    var page = req.query.page ? req.query.page : 1
-    var limit = req.query.limit ? req.query.limit : 10;
-    let filtro = {id: req.body.id}
-    try {
-        var Result = await VaccineService.getVaccines(filtro, page, limit)
-        return res.status(200).json({status: 200, data: Result, message: "Succesfully Vaccines Received"});
-    } catch (e) {
-        return res.status(400).json({status: 400, message: e.message});
-    }
-}
-
-exports.createVaccine = async function (req, res, next) {
+//recupero todas las vacunas
+exports.getAllVaccines = async function (req, res, next) {
     // Req.Body contains the form submit values.
-    console.log("llegue al controller",req.body)
-    var Entity = {
-        id: req.body.id,
-        vaccineId: req.body.vaccineId,
-        notes: req.body.notes
-    }
     try {
-        var createdVaccine = await VaccineService.createVaccine(Entity)
-        return res.status(201).json({createdVaccine, message: "Succesfully Created Child"})
+        var createdVaccine = await VaccineService.getVaccines()
+        return res.status(201).json({vaccine:createdVaccine, message: "Succesfully Created Vaccine"})
     } catch (e) {
         console.log(e)
         return res.status(400).json({status: 400, message: "User Creation was Unsuccesfull"})
     }
 }
+
+
+//se crea la vacuna propiamente dicha
+exports.createVaccine = async function (req, res, next) {
+    // Req.Body contains the form submit values.
+    console.log(req)
+    var Entity = {
+        name: req.body.name,
+        dosis: req.body.dosis,
+        x: req.body.x,
+        y: req.body.y        
+    }
+    try {
+        var createdVaccine = await VaccineService.createVaccine(Entity)
+        return res.status(201).json({vaccine:createdVaccine, message: "Succesfully Created Vaccine"})
+    } catch (e) {
+        console.log(e)
+        return res.status(400).json({status: 400, message: "User Creation was Unsuccesfull"})
+    }
+}
+
+
 
 exports.updateVaccine = async function (req, res, next) {
     // Id is necessary for the update
@@ -60,5 +64,37 @@ exports.removeVaccine = async function (req, res, next) {
         res.status(200).send("Succesfully Deleted");
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message})
+    }
+}
+
+
+
+// obtengo vacunas del chico
+exports.getVaccinesByChild = async function (req, res, next) {
+    // Check the existence of the query parameters, If doesn't exists assign a default value
+    var filtro = req.body
+    try {
+        var Result = await VaccineService.getVacunaPorNinio(filtro)
+        return res.status(200).json({status: 200, data: Result, message: "Succesfully Vaccines Received"});
+    } catch (e) {
+        return res.status(400).json({status: 400, message: e.message});
+    }
+}
+
+// cuando se da una vacuna se asocia con el chico
+exports.asociarVacunaNinio = async function (req, res, next) {
+    // Req.Body contains the form submit values.
+    console.log("llegue al controller",req.body)
+    var Entity = {
+        childId: req.body.childId,
+        vaccineId: req.body.vaccineId,
+        date: new Date()
+    }
+    try {
+        var createdVaccine = await VaccineService.asociarVacunaNinio(Entity)
+        return res.status(201).json({createdVaccine, message: "Succesfully Created Asociation"})
+    } catch (e) {
+        console.log(e)
+        return res.status(400).json({status: 400, message: "User Creation was Unsuccesfull"})
     }
 }

@@ -1,19 +1,16 @@
 // Gettign the Newly created Mongoose Model we just created 
 var NinioControlVaccine = require('../models/ChildControlVaccine.model');
 var jwt = require('jsonwebtoken');
+const Vaccine = require('../models/Vaccine.model');
+const ChildControlVaccine = require('../models/ChildControlVaccine.model');
 
 // Saving the context of this module inside the _the variable
 _this = this
 
 // Async function to get the User List
-exports.getVaccines = async function (query, page, limit) {
-    var options = {
-        page,
-        limit
-    }
+exports.getVaccines = async function () {
     try {
-        console.log("Query",query)
-        var Vaccines = await NinioControlVaccine.paginate(query, options)
+        var Vaccines = await Vaccine.find()
         return Vaccines;
 
     } catch (e) {
@@ -23,21 +20,17 @@ exports.getVaccines = async function (query, page, limit) {
 }
 
 exports.createVaccine = async function (entity) {
-    var newVaccine = new User({
-        ninioId: entity.id,
-        vaccineId: entity.vaccine.id,
-        notes: entity.vaccine.notes,
-        date: new Date()
+    var newVaccine = new Vaccine({
+        name: entity.name,
+        dosis: entity.dosis,
+        x: entity.x,
+        y: entity.y,
     })
     try {
-        // Saving the User 
+        // Saving the vaccine 
         var savedVaccine = await newVaccine.save();
-        var token = jwt.sign({
-            id: savedVaccine.vaccineId
-        }, process.env.SECRET, {
-            expiresIn: 86400 // expires in 24 hours
-        });
-        return token;
+        
+        return savedVaccine
     } catch (e) {
         console.log(e)    
         throw Error("Error while Creating Vaccine")
@@ -78,5 +71,32 @@ exports.deleteVaccine = async function (id) {
         return deleted;
     } catch (e) {
         throw Error("Error Occured while Deleting the NinioControlVaccine")
+    }
+}
+
+exports.asociarVacunaNinio = async function(entity){
+    var childControlVaccine = new ChildControlVaccine({
+        childId: entity.childId,
+        vaccineId: entity.vaccineId,
+        date : entity.date
+    })
+    try {
+        // Saving the vaccine 
+        var savedChildControlVaccine= await childControlVaccine.save();
+        
+        return savedChildControlVaccine
+    } catch (e) {
+        console.log(e)    
+        throw Error("Error while Creating Vaccine")
+    }
+}
+
+exports.getVacunaPorNinio = async function(id){
+    try {
+        var res = await ChildControlVaccine.find(id);
+        return res
+    } catch (e) {
+        console.log(e)    
+        throw Error("Error while Creating Vaccine")
     }
 }
