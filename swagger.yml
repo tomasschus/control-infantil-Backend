@@ -14,6 +14,8 @@ basePath: "/api"
 tags:
 - name: "/api/children"
   description: "Everything about your Children"
+- name: "/api/vaccines"
+  description: "Everything about Vaccines for Children"
 - name: "/api/info"
   description: "Everything about Home info"
 - name: "/api/users"
@@ -109,6 +111,158 @@ paths:
         "200":
           description: "Llegaste a la ruta de api/child.route"
       deprecated: true
+  /vaccines:
+    get:
+      tags:
+      - "/api/vaccines"
+      summary: "Get all Vaccine Calendar defined"
+      description: "No filter is required"
+      operationId: "getVaccines"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        "200":
+          description: "Succesfully Info Recieved"
+    post:
+      tags:
+      - "/api/vaccines"
+      summary: "Add a new vaccine to standard calendar"
+      description: ""
+      operationId: "addVaccine"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Vaccine object that needs to be added to the standard calendar"
+        required: true
+        schema:
+          $ref: "#/definitions/Vaccine"
+      responses:
+        "200":
+          description: "Succesfully Created Vaccine"
+        "400":
+          description: "Vaccine Creation was Unsuccesfull"
+        "405":
+          description: "Invalid input"
+    put:
+      tags:
+      - "/api/vaccines"
+      summary: "Update an existing Vaccine object"
+      description: ""
+      operationId: "updateVaccine"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Vaccine object that needs to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/Vaccine"
+      responses:
+        "200":
+          description: "Succesfully Updated Vaccine"
+        "404":
+          description: "Body is required"
+        "405":
+          description: "Error occured while updating the Vaccine"
+  /vaccines/{id}:
+    delete:
+      tags:
+      - "/api/vaccines"
+      summary: "Deletes a Vaccine object in standard calendar"
+      description: ""
+      operationId: "deleteVaccine"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Vaccine id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "Succesfully Deleted"
+        "404":
+          description: "Vaccine Could not be deleted"
+  /vaccines/test:
+    get:
+      tags:
+      - "/api/vaccines"
+      summary: "Path deprecated"
+      description: "Path for testing"
+      operationId: "vaccineTest"
+      responses:
+        "200":
+          description: "Llegaste a la ruta de api/vaccine.route"
+      deprecated: true
+  /vaccines/child:
+    post:
+      tags:
+      - "/api/vaccines"
+      summary: "Add a new vaccine to standard calendar"
+      description: ""
+      operationId: "addVaccineToChild"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Vaccine object that needs to be added to the standard calendar"
+        required: true
+        schema:
+          $ref: "#/definitions/AddVaccine"
+      responses:
+        "200":
+          description: "Succesfully Created Vaccine"
+        "400":
+          description: "Vaccine Creation was Unsuccesfull"
+        "405":
+          description: "Invalid input"
+    /vaccines/child:
+    put:
+      tags:
+      - "/api/vaccines"
+      summary: "Update an existing Vaccine object"
+      description: ""
+      operationId: "updateVaccineToChild"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Vaccine object that needs to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/UpdateVaccine"
+      responses:
+        "200":
+          description: "Succesfully Updated Vaccine"
+        "404":
+          description: "Body is required"
+        "405":
+          description: "Error occured while updating the Vaccine"
   /info:
     get:
       tags:
@@ -479,6 +633,48 @@ definitions:
         type: "string"
     xml:
       name: "Content"
+  Vaccine:
+    type: "object"
+    required:
+      - name
+      - dosis
+      - x
+      - y
+    properties:
+      name:
+        type: "string"
+      dosis:
+        type: "string"
+      x:
+        type: "number"
+      y:
+        type: "number"
+    xml:
+      name: "Vaccine"
+  AddVaccine:
+    type: "object"
+    required:
+      - childId
+    properties:
+      childId:
+        type: "string"
+    xml:
+      name: "AddVaccine"
+  UpdateVaccine:
+    type: "object"
+    required:
+      - childId
+      - vaccineId
+      - notes
+    properties:
+      childId:
+        type: "string"
+      vaccineId:
+        type: "string"
+      notes:
+        type: "string"
+    xml:
+      name: "UpdateVaccine"
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"
