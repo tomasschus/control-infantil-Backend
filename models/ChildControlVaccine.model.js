@@ -3,10 +3,9 @@ var mongoosePaginate = require('mongoose-paginate')
 
 
 var ChildControlVaccineSchema = new mongoose.Schema({
-    id: String,
     vaccineId: String,
+    childId: String,
     date: Date,
-    notes: String
 })
 
 ChildControlVaccineSchema.plugin(mongoosePaginate)

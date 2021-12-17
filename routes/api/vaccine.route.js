@@ -10,10 +10,13 @@ router.get('/test', function(req, res, next) {
 });
 
 //Vaccines
-router.get('/', Authorization, VaccineController.getVaccinesByChild)
+router.get('/', Authorization, VaccineController.getAllVaccines)
 router.post('/', Authorization, VaccineController.createVaccine)
 router.put('/', Authorization, VaccineController.updateVaccine)
 router.delete('/:id', Authorization, VaccineController.removeVaccine)
+router.post('/child', Authorization, VaccineController.getVaccinesByChild)
+router.put('/child', Authorization, VaccineController.asociarVacunaNinio)
+
 
 // Export the Router
 module.exports = router;
