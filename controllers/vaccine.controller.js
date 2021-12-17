@@ -46,8 +46,8 @@ exports.updateVaccine = async function (req, res, next) {
     }
     var Entity = {
         id: req.body.id ? req.body.id : null,
-        vaccineId: req.body.name ? req.body.vaccineId : null,
-        notes: req.body.username ? req.body.notes : null
+        vaccineId: req.body.vaccineId ? req.body.vaccineId : null,
+        notes: req.body.notes ? req.body.notes : null
     }
     try {
         var updatedChild = await VaccineService.updateVaccine(Entity)
@@ -72,9 +72,9 @@ exports.removeVaccine = async function (req, res, next) {
 // obtengo vacunas del chico
 exports.getVaccinesByChild = async function (req, res, next) {
     // Check the existence of the query parameters, If doesn't exists assign a default value
-    var filtro = req.body
+    var vaccineId = req.body
     try {
-        var Result = await VaccineService.getVacunaPorNinio(filtro)
+        var Result = await VaccineService.getVacunaPorNinio(vaccineId)
         return res.status(200).json({status: 200, data: Result, message: "Succesfully Vaccines Received"});
     } catch (e) {
         return res.status(400).json({status: 400, message: e.message});

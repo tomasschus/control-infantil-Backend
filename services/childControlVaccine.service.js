@@ -91,9 +91,9 @@ exports.asociarVacunaNinio = async function(entity){
     }
 }
 
-exports.getVacunaPorNinio = async function(id){
+exports.getVacunaPorNinio = async function(vaccineId){
     try {
-        var res = await ChildControlVaccine.find(id);
+        var res = await ChildControlVaccine.find(vaccineId);
         return res
     } catch (e) {
         console.log(e)    
