@@ -96,7 +96,7 @@ exports.asociarVacunaNinio = async function (req, res, next) {
             vaccineId: req.body.vaccineId
         })
         console.log(hasThisVaccine)
-        if(hasThisVaccine === []){
+        if(hasThisVaccine.length==0){
             var createdVaccine = await VaccineService.asociarVacunaNinio(Entity)
             return res.status(201).json({createdVaccine,estado:true, message: "Succesfully Created Asociation"})
         }
