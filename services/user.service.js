@@ -78,6 +78,49 @@ exports.createUser = async function (user) {
     }
 }
 
+exports.resetPassword = async function (user) {
+
+    // Creating a new password to encrypt
+    const random = Math.random().toString(36).substr(2,10);
+    var hashedPassword = bcrypt.hashSync(random, 8);
+    //console.log("Random password: " + random + " - Hashed password: " + random,hashedPassword);
+    
+    user.password = hashedPassword;
+    user.date = new Date();
+
+    try {
+        // Saving the User 
+        var updatedUser = await user.save()
+        console.log("resetPassword method: ",updatedUser)
+        return updatedUser ? random : null;
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log(e)    
+        throw Error("Error while Creating User")
+    }
+}
+
+exports.changePassword = async function (user) {
+
+    const newPassword = user.password;
+    // Creating a new password to encrypt
+    var hashedPassword = bcrypt.hashSync(newPassword, 8);
+    
+    user.password = hashedPassword;
+    user.date = new Date();
+
+    try {
+        // Saving the User 
+        var updatedUser = await user.save()
+        console.log("resetPassword method: ",updatedUser)
+        return updatedUser ? newPassword : null;
+    } catch (e) {
+        // return a Error message describing the reason 
+        console.log(e)    
+        throw Error("Error while Creating User")
+    }
+}
+
 exports.logUser = async function (user) {
     try {
         var loginUser = await this.getUserByEmail(user.email)
