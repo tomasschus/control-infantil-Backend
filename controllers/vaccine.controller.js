@@ -91,8 +91,19 @@ exports.asociarVacunaNinio = async function (req, res, next) {
         date: new Date()
     }
     try {
-        var createdVaccine = await VaccineService.asociarVacunaNinio(Entity)
-        return res.status(201).json({createdVaccine, message: "Succesfully Created Asociation"})
+        var hasThisVaccine = await VaccineService.getVacunaPorNinio({
+            childId: req.body.childId,
+            vaccineId: req.body.vaccineId
+        })
+        console.log(hasThisVaccine)
+        if(hasThisVaccine === []){
+            var createdVaccine = await VaccineService.asociarVacunaNinio(Entity)
+            return res.status(201).json({createdVaccine,estado:true, message: "Succesfully Created Asociation"})
+        }
+        else{
+            return res.status(201).json({createdVaccine,estado:false, message: "Already exist"})
+        }
+
     } catch (e) {
         console.log(e)
         return res.status(400).json({status: 400, message: "User Creation was Unsuccesfull"})
