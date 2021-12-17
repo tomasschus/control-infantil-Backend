@@ -375,6 +375,14 @@ paths:
 definitions:
   Child:
     type: "object"
+    required:
+      - name
+      - surname
+      - imageName
+      - bloodType
+      - birthday
+      - gender
+      - notes
     properties:
       name:
         type: "string"
@@ -394,6 +402,9 @@ definitions:
       name: "Child"
   UserLogin:
     type: "object"
+    required:
+      - email
+      - password
     properties:
       email:
         type: "string"
@@ -403,6 +414,10 @@ definitions:
       name: "UserLogin"
   UserCreate:
     type: "object"
+    required:
+      - name
+      - email
+      - password
     properties:
       name:
         type: "string"
@@ -414,29 +429,46 @@ definitions:
       name: "UserCreate"
   UserMail:
     type: "object"
+    required:
+          - email
     properties:
       email:
         type: "string"
     xml:
       name: "UserMail"
   Notification:
+    type: "object"
+    required:
+      - action
+      - email
     properties:
       action:
         type: "string"
         enum:
           - create
           - delete
+          - reset
+          - password
       email:
+        type: "string"
+      password:
         type: "string"
     xml:
       name: "Notification"
   Content:
+    required:
+      - type
+      - title
+      - description
+      - imgUrl
+      - button
     properties:
       type:
         type: "string"
         enum:
           - info
           - news
+          - carousel
       title:
         type: "string"
       description:
